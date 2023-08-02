@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{5B905361-F4BA-45E6-88A1-071D700F513C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Triangulo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Test\TrianguloTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Triangulo">
+        <MSBuild Projects="Triangulo.dproj"/>
+    </Target>
+    <Target Name="Triangulo:Clean">
+        <MSBuild Projects="Triangulo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Triangulo:Make">
+        <MSBuild Projects="Triangulo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TrianguloTests">
+        <MSBuild Projects="Test\TrianguloTests.dproj"/>
+    </Target>
+    <Target Name="TrianguloTests:Clean">
+        <MSBuild Projects="Test\TrianguloTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TrianguloTests:Make">
+        <MSBuild Projects="Test\TrianguloTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Triangulo;TrianguloTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Triangulo:Clean;TrianguloTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Triangulo:Make;TrianguloTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
